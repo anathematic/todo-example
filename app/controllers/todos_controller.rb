@@ -1,4 +1,8 @@
 class TodosController < ApplicationController
+  def index
+    @todos = Todo.all
+  end
+
   def new
     @todo = Todo.new
   end
@@ -7,7 +11,7 @@ class TodosController < ApplicationController
     @todo = Todo.new(permitted_params)
 
     if @todo.save
-      redirect_to root_path, notice: "Successfully created Todo."
+      redirect_to todos_path, notice: "Successfully created Todo."
     else
       render "new"
     end
