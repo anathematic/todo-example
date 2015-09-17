@@ -1,6 +1,12 @@
 %h1 My current Todos
 
 - @todos.each do |todo|
-  = todo.description
+  - if todo.completed?
+    %strike= todo.description
+  - else
+    = todo.description
+    = form_for todo do |f|
+      = f.hidden_field :completed_at, value: Time.zone.now
+      = f.submit "Finished"
 
 = link_to "Back to home", root_path

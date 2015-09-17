@@ -10,4 +10,15 @@ feature 'Can manage todo items' do
 
     expect(page).to have_content("Successfully created Todo.")
   end
+
+  scenario 'Can complete a todo' do
+    @todo = Todo.create(description: "Do the washing")
+
+    visit root_path
+    click_link "View existing Todos"
+
+    click_button "Finished"
+    expect(page).to have_content("Successfully completed Todo.")
+    expect(@todo.reload.completed?).to be_truthy
+  end
 end
