@@ -6,7 +6,7 @@ feature 'Can manage todo items' do
 
     click_link "New Todo"
     fill_in "Description", with: "Do the washing"
-    click_link "Create"
+    click_button "Create"
 
     expect(page).to have_content("Successfully created Todo.")
   end
